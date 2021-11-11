@@ -1,0 +1,26 @@
+aws ses send-email \
+  --from "maxwoodman@hotmail.co.uk" \
+  --destination "ToAddresses=[maxwoodman@hotmail.co.uk"] \
+  --message "Subject={Data=from ses,Charset=utf8},Body={Text={Data=ses says hi,Charset=utf8},Html={Data=,Charset=utf8}}"
+
+  aws ses send-email --from "maxwoodman@hotmail.co.uk" --destination "ToAddresses=maxwoodman@hotmail.co.uk" --text "hello" --subject "test"
+
+
+aws lambda add-permission \
+    --function-name my-function \
+    --action lambda:InvokeFunction \
+    --statement-id sns \
+    --principal sns.amazonaws.com
+
+aws events put-rule \
+    --name ra-checker-event \
+    --schedule-expression 'rate(5 minutes)'
+
+aws lambda add-permission \
+    --function-name raEventHasTickets \
+    --statement-id ra-checker-event \
+    --action 'lambda:InvokeFunction' \
+    --principal events.amazonaws.com \
+    --source-arn arn:aws:events:eu-west-2:325588966347:rule/ra-checker-event
+
+aws events put-targets --rule ra-checker-event --targets file://targets.json

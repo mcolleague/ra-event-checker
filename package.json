@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "chrome-aws-lambda": "^7.0.0",
+    "puppeteer-core": "^7.0.3",
+    "user-agents": "^1.0.826"
+  },
+  "scripts": {
+    "test": "npx run-func index.js handler",
+    "zip": "zip -r function.zip ./index.js node_modules/",
+    "upload-to-S3": "aws s3 cp function.zip s3://ra-checker-bucket",
+    "update-lambda": "aws lambda update-function-code --function-name raEventHasTickets --s3-bucket ra-checker-bucket --s3-key function.zip",
+    "deploy": "npm run zip && npm run upload-to-S3 && npm run update-lambda"
+  }
+}
