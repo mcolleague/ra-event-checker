@@ -23,7 +23,7 @@ exports.handler = async (event, context, callback) => {
 
         const emailParams = {
             Destination: {
-                ToAddresses: ['maxwoodman@hotmail.co.uk'],
+                ToAddresses: ['johnsmith@example.com'],
             },
             Message: {
                 Body: {
@@ -33,7 +33,7 @@ exports.handler = async (event, context, callback) => {
                     Data: 'RA checker: tickets available'
                 },
             },
-            Source: 'max@lambda-interactive.com'
+            Source: 'notifications@rachecker.com'
         }
 
         await page.setUserAgent(userAgent.toString());
