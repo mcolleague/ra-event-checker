@@ -1,9 +1,9 @@
 aws ses send-email \
-  --from "maxwoodman@hotmail.co.uk" \
-  --destination "ToAddresses=[maxwoodman@hotmail.co.uk"] \
+  --from "johnsmith@example.com" \
+  --destination "ToAddresses=[johnsmith@example.com"] \
   --message "Subject={Data=from ses,Charset=utf8},Body={Text={Data=ses says hi,Charset=utf8},Html={Data=,Charset=utf8}}"
 
-  aws ses send-email --from "maxwoodman@hotmail.co.uk" --destination "ToAddresses=maxwoodman@hotmail.co.uk" --text "hello" --subject "test"
+  aws ses send-email --from "johnsmith@example.com" --destination "ToAddresses=johnsmith@example.com" --text "hello" --subject "test"
 
 
 aws lambda add-permission \
